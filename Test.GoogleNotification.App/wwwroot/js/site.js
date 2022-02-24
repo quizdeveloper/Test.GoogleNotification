@@ -10,6 +10,7 @@
         appId: "1:235890289713:web:d8a500bd63d0be6d4ff910",
         measurementId: "G-PFPZRR0Y7X"
     });
+    firebase.analytics();
 
     const messaging = firebase.messaging();
     // Add the public key generated from the console here.
@@ -25,6 +26,9 @@
 
     messaging.onMessage((payload) => {
         console.log('onMessage Received background message ', payload);
+        //if (payload != null) {
+        //    new Notification(payload.notification.title, { body: payload.notification.body, icon: '' });
+        //}
     });
 
     function requestPermission() {

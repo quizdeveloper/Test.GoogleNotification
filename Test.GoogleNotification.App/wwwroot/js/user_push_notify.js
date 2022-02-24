@@ -20,6 +20,7 @@
                         $(this).removeAttr("disabled");
 
                         if (data) {
+                            $(this).parent().parent().find(".msg").val("");
                             alert("Push sucessful!!");
                         } else {
                             alert("Can't push notification!!");

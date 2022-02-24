@@ -13,5 +13,8 @@ namespace Test.GoogleNotification.Dal.Entities
         public int? UserId { get; set; }
         public DateTime? PushDate { get; set; }
         public bool? Status { get; set; }
+        public string Message { get; set; }
+        public string Title { get; set; }
+        public string Link { get; set; }
     }
 }

@@ -23,6 +23,7 @@ namespace Test.GoogleNotification.Core
 
                 var messageInformation = new Message()
                 {
+                    to = deviceTokens[0],
                     notification = new Notification()
                     {
                         title = title,
@@ -30,8 +31,8 @@ namespace Test.GoogleNotification.Core
                         click_action = link,
                         icon = icon
                     },
-                    data = data,
-                    registration_ids = deviceTokens
+                    //data = data,
+                    //registration_ids = deviceTokens
                 };
 
                 //Object to JSON STRUCTURE => using Newtonsoft.Json;
@@ -74,9 +75,10 @@ namespace Test.GoogleNotification.Core
 
     public class Message
     {
-        public string[] registration_ids { get; set; }
+        //public string[] registration_ids { get; set; }
+        public string to { get; set; }
         public Notification notification { get; set; }
-        public object data { get; set; }
+        //public object data { get; set; }
     }
 
     public class Notification

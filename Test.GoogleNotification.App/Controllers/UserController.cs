@@ -73,14 +73,19 @@ namespace Test.GoogleNotification.App.Controllers
 
                 // 2. Push notify to user 
                 string title = "Google Notifycation App";
+                string link = "";
+                string icon = "https://quizdeveloper.com/images/logo.png";
                 string[] tokens = new string[] { token };
-                await PushNotificationHelper.SendPushNotification(tokens, title, message, null);
+                await PushNotificationHelper.SendPushNotification(tokens, title, message, null, link, icon);
 
                 // 3. Create Notify object
                 var notifyHis = new NotifyHistory();
                 notifyHis.PushDate = DateTime.Now;
                 notifyHis.UserId = userObj.UserId;
                 notifyHis.Status = true;
+                notifyHis.Message = message;
+                notifyHis.Title = title;
+                notifyHis.Link = link;
 
                 // 4. Save notify history & return
                 await _notifyHistory.Create(notifyHis);
