@@ -1,0 +1,58 @@
+﻿@{
+    ViewData["Title"] = "Home Notifycation";
+}
+@using Test.GoogleNotification.Bsl.Models
+@model List<UserModel>
+
+
+<div class="container">
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Ip</th>
+                    <th>Created Date</th>
+                    <th>Token</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    int stt = 0;
+                    foreach (var user in Model)
+                    {
+                        stt++;
+                        <tr>
+                            <td>@stt</td>
+                            <td>@user.IpAddress</td>
+                            <td>@user.CreatedDateFormat</td>
+                            <td style="width: 350px; word-break: break-all;" title="@user.SubscribeToken">@user.SubscribeToken.Substring(0, 50) ...</td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-9">
+                                        <textarea class="msg" style="width: 100%; height: 40px;"></textarea>
+                                    </div>
+                                    <div class="col-3">
+                                        <button class="btn btn-success btn-push" data-token="@user.SubscribeToken">Push</button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="6">No subscriber found!!</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/js/user_push_notify.js?v=1"></script>
+}
+
