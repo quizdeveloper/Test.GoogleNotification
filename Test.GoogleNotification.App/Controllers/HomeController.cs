@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Test.GoogleNotification.App.Models;
 using Test.GoogleNotification.Bsl.Models;
 using Test.GoogleNotification.Bsl.User;
 using Test.GoogleNotification.Core;

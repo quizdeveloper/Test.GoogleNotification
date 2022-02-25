@@ -31,7 +31,7 @@ namespace Test.GoogleNotification.App
         {
             // Add EF connection
             services.AddDbContextPool<GoogleNotificationContext>(x=> {
-                x.UseSqlServer(Configuration.GetConnectionString("GoogleNotifyConnectionString"));
+                x.UseMySQL(Configuration.GetConnectionString("GoogleNotifyConnectionString"));
             });
 
             // Add IoC
