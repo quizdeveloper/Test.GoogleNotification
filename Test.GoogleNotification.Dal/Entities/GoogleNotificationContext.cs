@@ -26,7 +26,7 @@ namespace Test.GoogleNotification.Dal.Entities
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseMySQL("server=127.0.0.1;uid=root;pwd=sa@12345;database=googlenotification");
+                optionsBuilder.UseMySQL("server=35.240.179.150;uid=dungdt;pwd=1234@1234aS;database=googlenotification");
             }
         }
 
