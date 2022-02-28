@@ -27,7 +27,7 @@ namespace Test.GoogleNotification.UnitTest.Bsl
             provider = services.BuildServiceProvider();
 
             services.AddDbContextPool<GoogleNotificationContext>(x => {
-                x.UseSqlServer("Server=DESKTOP-9HHLK4D;Database=GoogleNotification;user id=sa;password=sa@12345;Trusted_Connection=True;");
+                x.UseMySQL("server=35.240.179.150;uid=dungdt;pwd=1234@1234aS;database=googlenotification");
                 x.UseInternalServiceProvider(provider);
             });
         }

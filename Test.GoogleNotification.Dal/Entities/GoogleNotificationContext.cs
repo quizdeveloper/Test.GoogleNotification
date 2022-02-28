@@ -19,14 +19,14 @@ namespace Test.GoogleNotification.Dal.Entities
         {
         }
 
-        public virtual DbSet<NotifyHistory> NotifyHistory { get; set; }
+        public virtual DbSet<NotifyHistory> Notifyhistory { get; set; }
         public virtual DbSet<User> User { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=DESKTOP-9HHLK4D;Database=GoogleNotification;user id=sa;password=sa@12345;Trusted_Connection=True;");
+                optionsBuilder.UseMySQL("server=35.240.179.150;uid=dungdt;pwd=1234@1234aS;database=googlenotification");
             }
         }
 
@@ -34,22 +34,34 @@ namespace Test.GoogleNotification.Dal.Entities
         {
             modelBuilder.Entity<NotifyHistory>(entity =>
             {
-                entity.Property(e => e.PushDate).HasColumnType("datetime");
+                entity.ToTable("notifyhistory");
 
-                entity.Property(e => e.Status).HasComment("true : push ok, false : can't push");
+                entity.HasIndex(e => e.NotifyHistoryId)
+                    .HasName("NotifyHistoryId_UNIQUE")
+                    .IsUnique();
+
+                entity.Property(e => e.Link).HasMaxLength(150);
+
+                entity.Property(e => e.Message).HasMaxLength(500);
+
+                entity.Property(e => e.Status).HasColumnType("bit(1)");
+
+                entity.Property(e => e.Title).HasMaxLength(100);
             });
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.Property(e => e.CreatedDate)
-                    .HasColumnType("datetime")
-                    .HasDefaultValueSql("(getdate())");
+                entity.ToTable("user");
+
+                entity.HasIndex(e => e.UserId)
+                    .HasName("UserId_UNIQUE")
+                    .IsUnique();
+
+                entity.Property(e => e.CreatedDate).HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                 entity.Property(e => e.IpAddress).HasMaxLength(100);
 
-                entity.Property(e => e.SubscribeToken)
-                    .HasMaxLength(250)
-                    .IsUnicode(false);
+                entity.Property(e => e.SubscribeToken).HasMaxLength(500);
             });
 
             OnModelCreatingPartial(modelBuilder);

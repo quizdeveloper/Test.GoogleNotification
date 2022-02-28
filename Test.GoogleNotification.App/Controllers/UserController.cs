@@ -73,7 +73,7 @@ namespace Test.GoogleNotification.App.Controllers
 
                 // 2. Push notify to user 
                 string title = "Google Notifycation App";
-                string link = "";
+                string link = "https://quizdeveloper.com";
                 string icon = "https://quizdeveloper.com/images/logo.png";
                 string[] tokens = new string[] { token };
                 await PushNotificationHelper.SendPushNotification(tokens, title, message, null, link, icon);

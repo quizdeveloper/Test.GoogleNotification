@@ -23,16 +23,17 @@ namespace Test.GoogleNotification.Core
 
                 var messageInformation = new Message()
                 {
-                    to = deviceTokens[0],
+                    //to = deviceTokens[0],
                     notification = new Notification()
                     {
                         title = title,
                         body = body,
-                        click_action = link,
-                        icon = icon
+                        icon = icon,
+                        click_action = link
                     },
-                    //data = data,
-                    //registration_ids = deviceTokens
+                    data = data,
+                    registration_ids = deviceTokens,
+                    //fcm_options = new FcmOptions() {  link = link} 
                 };
 
                 //Object to JSON STRUCTURE => using Newtonsoft.Json;
@@ -73,12 +74,15 @@ namespace Test.GoogleNotification.Core
 
     }
 
+    #region Defind Payload of notification
     public class Message
     {
-        //public string[] registration_ids { get; set; }
-        public string to { get; set; }
+        public string[] registration_ids { get; set; }
+        //public string to { get; set; }
         public Notification notification { get; set; }
-        //public object data { get; set; }
+        public object data { get; set; }
+        //public WebPush webpush { get; set; }
+        //public FcmOptions fcm_options { get; set; }
     }
 
     public class Notification
@@ -88,4 +92,5 @@ namespace Test.GoogleNotification.Core
         public string icon { get; set; }
         public string click_action { get; set; }
     }
+    #endregion
 }

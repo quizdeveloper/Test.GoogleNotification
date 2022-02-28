@@ -24,14 +24,14 @@ namespace Test.GoogleNotification.UnitTest.Bsl
             provider = services.BuildServiceProvider();
 
             services.AddDbContextPool<GoogleNotificationContext>(x => {
-                x.UseSqlServer("Server=DESKTOP-9HHLK4D;Database=GoogleNotification;user id=sa;password=sa@12345;Trusted_Connection=True;");
+                x.UseMySQL("server=35.240.179.150;uid=dungdt;pwd=1234@1234aS;database=googlenotification");
                 x.UseInternalServiceProvider(provider);
             });
         }
 
-        [TestCase(0)] // Not Existed
-        [TestCase(1)] // Existed
-        [TestCase(10000)] // Not Existed
+        //[TestCase(0)] // Not Existed
+        [TestCase(2)] // Existed
+        //[TestCase(10000)] // Not Existed
         public async Task Get_User_By_Id(int userId)
         {
             var userObj = await provider.GetService<IUserBsl>().GetById(userId);
