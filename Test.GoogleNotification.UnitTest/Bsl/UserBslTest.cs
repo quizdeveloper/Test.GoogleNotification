@@ -29,9 +29,9 @@ namespace Test.GoogleNotification.UnitTest.Bsl
             });
         }
 
-        [TestCase(0)] // Not Existed
-        [TestCase(1)] // Existed
-        [TestCase(10000)] // Not Existed
+        //[TestCase(0)] // Not Existed
+        [TestCase(2)] // Existed
+        //[TestCase(10000)] // Not Existed
         public async Task Get_User_By_Id(int userId)
         {
             var userObj = await provider.GetService<IUserBsl>().GetById(userId);
